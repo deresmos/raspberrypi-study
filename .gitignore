@@ -1,0 +1,6 @@
+/workspace/boot/*
+/workspace/root/*
+
+!.gitkeep
+
+/workspace/wpa_supplicant.conf
