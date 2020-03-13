@@ -1,5 +1,19 @@
-title: Raspberry Pi Study
-theme : moon
-highlight : monokai
+title: Raspberry Pi Study - day1 -
 slide-number: true
 transition : fade
+theme-override : PITCHME.css
+code-line-numbers: true
+
+# PITCHME-DOT-YAML-SETTINGS-THEME-BUILDER-GENERATED-START
+theme            : template
+theme-background : [ "#333" ]
+theme-headline   : [ "Open Sans", "#A6AFE3", "none", "#FFFFFF", "100", "120", "15" ]
+theme-byline     : [ "Open Sans", "#FFFFFF", "none", "#A6AFE3", "100", "110", "15" ]
+theme-text       : [ "Ubuntu", "#FFFFFF", "none", "#F9F871", "100", "100", "15" ]
+theme-links      : [ "#5289F7", "#5254F7" ]
+theme-code       : [ "Inconsolata", "160", "120" ]
+highlight        : monokai
+theme-controls   : [ "inherit" ]
+theme-margins    : [ "0", "15px" ]
+layout           : center
+# PITCHME-DOT-YAML-SETTINGS-THEME-BUILDER-GENERATED-END
