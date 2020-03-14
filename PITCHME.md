@@ -215,4 +215,5 @@ for i in range(length):
 @[10, zoom-16](for文。rangeは、指定個数の連番配列を返してくれる)
 @[11,13,15,17, zoom-16](if文。論理演算子は、and, or, notで表現)
 @[11-18, zoom-16](fizzbuzz)
+@[10-18](練習：0の「FizzBuzz!」を表示されないようにしよう！)
 @snapend
