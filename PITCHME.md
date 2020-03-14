@@ -83,7 +83,7 @@ avahiにより、ホスト名でアクセス可能
 ### Wifi接続
 
 ```bash
-wpa_passphrase ssid password >> /etc/wpa_supplicant/wpa_supplicant.conf
+sudo bash -c 'wpa_passphrase ssid password >> /etc/wpa_supplicant/wpa_supplicant.conf'
 
 ip a
 ip link set wlan0 up
