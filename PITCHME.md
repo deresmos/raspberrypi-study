@@ -40,7 +40,7 @@
 ### Raspbian LiteをSDカードにインストール
 ※if, ofは絶対に間違えないように！
 
-```bash code-noblend code-wrap zoom-11
+```bash zoom-11
 dd bs=4M if=2020-02-13-raspbian-buster-lite.img of=/dev/sdb conv=fsync
 ```
 
@@ -57,12 +57,12 @@ dd bs=4M if=2020-02-13-raspbian-buster-lite.img of=/dev/sdb conv=fsync
 ---
 
 ### sshd自動起動
-```bash code-noblend
+```bash
 sudo touch boot/ssh
 ```
 
 起動後
-```bash code-noblend
+```bash
 ssh pi@raspberrypi.local
 ```
 
@@ -82,7 +82,7 @@ avahiにより、ホスト名でアクセス可能
 
 ### Wifi接続
 
-```bash code-noblend code-wrap
+```bash
 wpa_passphrase ssid password >> /etc/wpa_supplicant/wpa_supplicant.conf
 
 ip a
@@ -100,7 +100,7 @@ Wi-Fi接続完了！
 ### RF-kill
 無線送信器を、アクティベート、非アクティブ化することができる。
 
-```bash code-noblend
+```bash
 rfkill list
 ```
 
@@ -112,7 +112,19 @@ rfkill list
 
 初期設定
 
-@code[bash zoom-10 code-noblend code-wrap](src/setup_raspbian_sd.sh)
+```bash zoom-10
+cd workspace
+sudo mount /dev/sdb1 boot
+sudo mount /dev/sdb2 root
+
+sudo cp root/etc/wpa_supplicant/wpa_supplicant.conf ./
+sudo bash -c 'wpa_passphrase ssid password >> wpa_supplicant.conf'
+
+sudo touch boot/ssh
+sudo cp wpa_supplicant.conf boot/
+
+sudo vim root/etc/dhcpcd.conf
+```
 
 @snap[north span-100]
 @[2-3, zoom-16](/boot, /をマウント)
@@ -129,7 +141,7 @@ rfkill list
 
 /etc/dhcpcd.conf
 
-```text code-noblend
+```text
 interface wlan0
 static ip_address=192.168.1.122/24
 static routers=192.168.1.1
@@ -143,7 +155,7 @@ DHCPのクライアント
 
 +++
 
-```bash code-noblend
+```bash
 sudo systemctl daemon-reload
 sudo systemctl restart dhcpcd
 sudo ip addr del 192.168.1.120/24 dev wlan0
@@ -160,7 +172,7 @@ sudo ip addr del 192.168.1.120/24 dev wlan0
 
 Webサーバーをさくっと立ててみる
 
-```bash code-noblend
+```bash
 scp index.html 宛先:./index.html
 
 ssh ラズパイ入る
@@ -175,7 +187,26 @@ FizzBuzzで学ぶ基本構文
 
 ---
 
-@code[python zoom-10 code-noblend code-wrap](src/fizzbuzz.py)
+```python zoom-10
+import random
+
+length = random.randint(20, 40)
+
+
+def print_fizzbuzz():  # 関数定義
+    print("Fizz Buzz!")
+
+
+for i in range(length):
+    if (i % 3 == 0) and (i % 5 == 0):  # i % 15 == 0
+        print_fizzbuzz()  # 関数呼び出し
+    elif i % 3 == 0:
+        print("Fizz!")
+    elif not (i % 5):
+        print("Buzz!")
+    else:
+        print(i)
+```
 
 @snap[north span-100]
 @[1, zoom-16](randomパッケージの読み込み)

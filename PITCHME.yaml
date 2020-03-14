@@ -1,7 +1,7 @@
 title: Raspberry Pi Study - day1 -
 slide-number: true
 transition : fade
-theme-override : PITCHME.css
+theme-override : src/PITCHME.css
 code-line-numbers: true
 
 # PITCHME-DOT-YAML-SETTINGS-THEME-BUILDER-GENERATED-START
@@ -11,7 +11,7 @@ theme-headline   : [ "Open Sans", "#A6AFE3", "none", "#FFFFFF", "100", "120", "1
 theme-byline     : [ "Open Sans", "#FFFFFF", "none", "#A6AFE3", "100", "110", "15" ]
 theme-text       : [ "Ubuntu", "#FFFFFF", "none", "#F9F871", "100", "100", "15" ]
 theme-links      : [ "#5289F7", "#5254F7" ]
-theme-code       : [ "Inconsolata", "160", "120" ]
+theme-code       : [ "Inconsolata", "140", "120" ]
 highlight        : monokai
 theme-controls   : [ "inherit" ]
 theme-margins    : [ "0", "15px" ]
