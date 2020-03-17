@@ -4,3 +4,5 @@
 !.gitkeep
 
 /workspace/wpa_supplicant.conf
+
+.mypy_cache
