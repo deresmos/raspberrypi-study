@@ -38,10 +38,9 @@ class MainHandler(tornado.web.RequestHandler):
         self.render("index.html")
 
 
-application = tornado.web.Application(
-    [(r"/", MainHandler), (r"/websocket", WebSocketHandler)]
-)
-
 if __name__ == "__main__":
+    application = tornado.web.Application(
+        [(r"/", MainHandler), (r"/websocket", WebSocketHandler)]
+    )
     application.listen(8008)
     tornado.ioloop.IOLoop.current().start()

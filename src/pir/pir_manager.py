@@ -2,6 +2,7 @@ import time
 
 import RPi.GPIO as GPIO
 from send_count import send_to_websocket
+from video_recorder import start_camera
 
 INTERVAL = 0.1
 SLEEPTIME = 4
@@ -9,12 +10,15 @@ GPIO_PIN = 18
 
 count = 0
 
+recorder_thread = start_camera()
+
 
 def detected():
     global count
     count += 1
+    recorder_thread.record_video()
 
-    send_to_websocket(count)
+    #  send_to_websocket(count)
     print("ん？だれか通った？")
     time.sleep(SLEEPTIME)
     print("過ぎ去ったな。。。")
