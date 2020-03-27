@@ -1,58 +1,95 @@
-## Day 2
+## Day 3
 
 ---
 
-### Day1のおさらい
+### Prometheus
 
-- OSインストール(dd)
-- WiFi接続(wpa_supplicant, wpa_passphrase, rfkill)
-- SSHD起動(systemctl or /boot/ssh)
-
----
-
-### キーボード、ディスプレイ不要
-- SSHD起動(systemctl or /boot/ssh) |
-  - -> /boot/ssh 空ファイルおく |
-- WiFi接続(wpa_supplicant, wpa_passphrase, rfkill) |
-  - -> /boot/wpa_supplicant.confを置く |
+- Pull型のリソース監視システム（監視対象のサーバから情報を取得）
+- アラートなど設定できる
 
 ---
 
-### 人感センサー
+### Prometheusダウンロード
+https://prometheus.io/download/
 
-- 赤外線により人間の所在を検知する
+```
+wget https://github.com/prometheus/prometheus/releases/download/v2.16.0/prometheus-2.16.0.linux-amd64.tar.gz
+tar xvf prometheus-2.16.0.linux-amd64.tar.gz
 
----
-
-### GPIO
-
-- General-purpose input/output
-- ユーザーによって制御可能な汎用出力インターフェース
-
----
-
-### 人感センサーつなげてみる
-
----
-
-### Pythonセットアップ
-
-- [Berry Conda](https://github.com/jjhelmus/berryconda)
-
-
-```bash
-wget https://github.com/jjhelmus/berryconda/releases/download/v2.0.0/Berryconda3-2.0.0-Linux-armv7l.sh
-bash Berryconda3-2.0.0-Linux-armv7l.sh
+./prometheus
 ```
 
 ---
 
-### GPIO制御するパッケージインストール
+### node exporter
+- システムリソース情報をPrometheusに提供できるようになる
 
-```bash
-pip install RPi.GPIO
+```
+wget https://github.com/prometheus/node_exporter/releases/download/v0.18.1/node_exporter-0.18.1.linux-armv7.tar.gz
+tar xvf node_exporter-0.18.1.linux-armv7.tar.gz
+
+./node_exporter &
 ```
 
 ---
 
-### 人感センサー使ってみる
+### Prometheusの監視に追加する
+prometheus.yml
+
+```
+scrape_configs:
+  - job_name: 'node_exporter'
+    static_configs:
+      - targets: ['localhost:9100']
+```
+
+---
+
+### PrometheusのWebUI
+process_resident_memory_bytes
+
+
+---
+
+### Grafana
+- ログ・データを可視化するツール
+- 複数のデータベースに対応しており、表示が可能
+- OSS
+
+---
+
+### Grafanaダウンロード
+
+```
+wget https://dl.grafana.com/oss/release/grafana-6.7.1.linux-armv7.tar.gz
+tar xvf grafana-6.7.1.linux-armv7.tar.gz
+cd grafana-6.7.1/
+./bin/grafana-server
+```
+
+---
+
+### データソース設定画面へ
+![1](./src/image/1.png)
+
+---
+
+### Prometheusデータソースの追加
+![2](./src/image/2.png)
+
+---
+
+### URL書き込んで、保存し、ダッシュボードimportを選択
+![3](./src/image/3.png)
+
+---
+
+### [Grafana Dashborads](https://grafana.com/grafana/dashboards?orderBy=name&direction=asc)
+![4](./src/image/4.png)
+
+---
+
+### Ansible
+- 構成管理ツール
+- yamlで設定ファイルを書くことで、サーバ設定を合わせる
+- 1台だろうが、1000台だろうが、コマンドひとつでkて合わせることができる
